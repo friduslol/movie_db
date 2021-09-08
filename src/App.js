@@ -1,4 +1,5 @@
 import GenrePage from "./pages/GenresPage";
+import GenreDetailsPage from "./pages/GenreDetailsPage";
 import Movie from "./pages/MoveListPage";
 import Navbar from "./components/Navbar";
 
@@ -23,6 +24,7 @@ function App() {
                 <ReactQueryDevtools initialIsOpen={false} />
                 <Route exact path="/" component={GenrePage} />
                 <Route exact path="/topp" component={Movie} />
+                <Route exact path="/genre/:id" component={GenreDetailsPage} />
             </QueryClientProvider>
         </BrowserRouter>
     </div>
