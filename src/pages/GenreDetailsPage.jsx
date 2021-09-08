@@ -1,20 +1,24 @@
 import { useQuery } from "react-query";
-import { getPosts } from "../services/GenreAPI";
+import { fetchGenre } from "../services/GenreDetailsAPI";
 import { useEffect, useState } from "react"
 
 const GenreDetailsPage = (props) => {
     const [page, setPage] = useState(1);
+    const id = props.match.params.id
+    const genre = props.match.params.genre
 
-    const { data, error, isError, isLoading } = useQuery(
-        ["movies", page],
-                        //genre id from params props.match.params.id
-        () => getPosts(`${props.match.params.id}`, page),
+
+    console.log("genre", genre);
+
+    const { data, isError, isLoading, error, isPreviousData } = useQuery(
+        [`${id}`, page],
+        () => fetchGenre(`${id}`, page),
         {
             staleTime: 1000 * 60 * 5, // 5 mins
             cacheTime: 1000 * 60 * 30, // 30 mins
             keepPreviousData: true, // keep previous data
         }
-    )
+    );
 
     useEffect(() => {
         console.log("this is movies from genre", data);
@@ -22,7 +26,7 @@ const GenreDetailsPage = (props) => {
 
     return(
         <div>
-            <h1>Genre Page</h1>
+            <h1>{genre}</h1>
 
             {!data && <></>}
 
@@ -30,7 +34,7 @@ const GenreDetailsPage = (props) => {
 
             {isError && <p>{error}</p>}
 
-            {data && data.genreData.map((movie, i) => (
+            {data && data.results.map((movie, i) => (
                 <p key={i} >{movie.title}</p>
             ))}
 
