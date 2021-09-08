@@ -7,7 +7,7 @@ const GenrePage = () => {
     const historyHook = useHistory();
 
     const clickToRender = (genre) => {
-        historyHook.push(`/${genre.name}/${genre.id}`)
+        historyHook.push(`/genre/${genre.id}`)
     }
 
     return(

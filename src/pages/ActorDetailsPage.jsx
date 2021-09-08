@@ -1,21 +1,20 @@
 import { useQuery } from "react-query";
-import { fetchMovie } from "../services/GenreAPI";
-import { useEffect } from "react";
+import { fetchActor } from "../services/GenreAPI"
+import { useEffect } from "react"
 import { useHistory } from "react-router-dom";
 
-const MovieDetailsPage = (props) => {
+const ActorDetailsPage = (props) => {
     const id = props.match.params.id
     const historyHook = useHistory();
 
     const { data, isError, isLoading, error, } = useQuery(
-        ["movie"],
-        () => fetchMovie(`${id}`),
+        ["actor"],
+        () => fetchActor(`${id}`),
     );
 
     const clickToRender = (id) => {
-        historyHook.push(`/actor/${id}`)
+        historyHook.push(`/movie/${id}/`);
     }
-
     useEffect(() => {
         console.log("movie data", data);
     }, [data])
@@ -31,11 +30,12 @@ const MovieDetailsPage = (props) => {
 
             {data && (
                 <div>
-                     <img src={"https://image.tmdb.org/t/p/w500" + data.poster_path} alt={data.original_title}/>
-                    <p>{data.original_title}</p>
-                    <p>{data.overview}</p>
-                    {data.credits.cast.map((actor, i) => (
-                        <p key={i} onClick={() => clickToRender(actor.id)}>{actor.name}</p>
+                    {data.profile_path
+                    ? <img src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name}/>
+                    : <p>No image avalible</p>}
+                    <p>{data.name}</p>
+                    {data.combined_credits.cast.map((movie, i) => (
+                        <p key={i} onClick={() => clickToRender(movie.id)}>{movie.original_title}</p>
                     ))}
                 </div>
             )}
@@ -44,4 +44,4 @@ const MovieDetailsPage = (props) => {
     )
 }
 
-export default MovieDetailsPage;
+export default ActorDetailsPage;
