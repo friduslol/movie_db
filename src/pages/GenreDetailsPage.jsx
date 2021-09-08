@@ -35,7 +35,10 @@ const GenreDetailsPage = (props) => {
             {isError && <p>{error}</p>}
 
             {data && data.results.map((movie, i) => (
-                <p key={i} >{movie.title}</p>
+                <div>
+                    <p key={i} >{movie.title}</p>
+                    <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+                </div>
             ))}
 
         </div>
