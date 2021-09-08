@@ -20,12 +20,12 @@ const GenrePage = () => {
 
             {isError && <p>{error}</p>}
 
+
             {data && (
                 data.genres.map((genre, i) => (
                     <p onClick={() => clickToRender(genre)} key={i}>{genre.name}</p>
                 ))
             )}
-
 
         </div>
 

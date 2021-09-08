@@ -1,29 +1,21 @@
 import { useQuery } from "react-query";
 import { fetchGenre } from "../services/GenreDetailsAPI";
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom";
 
 const GenreDetailsPage = (props) => {
-    const [page, setPage] = useState(1);
     const id = props.match.params.id
     const genre = props.match.params.genre
+    const historyHook = useHistory();
 
-
-    console.log("genre", genre);
-
-    const { data, isError, isLoading, error, isPreviousData } = useQuery(
-        [`${id}`, page],
-        () => fetchGenre(`${id}`, page),
-        {
-            staleTime: 1000 * 60 * 5, // 5 mins
-            cacheTime: 1000 * 60 * 30, // 30 mins
-            keepPreviousData: true, // keep previous data
-        }
+    const { data, isError, isLoading, error, } = useQuery(
+        [`${id}`],
+        () => fetchGenre(`${id}`),
     );
 
-    useEffect(() => {
-        console.log("this is movies from genre", data);
-    }, [data])
-
+    const clickToRender = (id) => {
+        historyHook.push(`/movie/${id}/`);
+    }
     return(
         <div>
             <h1>{genre}</h1>
@@ -34,12 +26,14 @@ const GenreDetailsPage = (props) => {
 
             {isError && <p>{error}</p>}
 
-            {data && data.results.map((movie, i) => (
-                <div>
-                    <p key={i} >{movie.title}</p>
-                    <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
-                </div>
-            ))}
+            {data && (
+                data.results.map((movie, i) => (
+                    <div onClick={() => clickToRender(movie.id)} key={i}>
+                    <p>{movie.original_title}</p>
+                    <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.original_title}/>
+                    </div>
+                ))
+            )}
 
         </div>
 
