@@ -30,6 +30,10 @@ const GenreDetailsPage = (props) => {
 
             {isError && <p>{error}</p>}
 
+            {data && data.genreData.map((movie, i) => (
+                <p key={i} >{movie.title}</p>
+            ))}
+
         </div>
 
     )
