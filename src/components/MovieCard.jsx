@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import * as ReactBootstrap from "react-bootstrap";
 
 const MovieCard = (props) => {
     const historyHook = useHistory();
@@ -7,17 +8,25 @@ const MovieCard = (props) => {
         historyHook.push(`/movie/${id}/`);
     }
 
+    console.log("data", props.data);
+
     return(
         <div>
             {props.data && (
                 props.data.results.map((movie, i) => (
-                    <div onClick={() => clickToRender(movie.id)} key={i}>
-                        <p>{movie.title}</p>
+                    <ReactBootstrap.Card style={{ width: "18rem "}} key={i}>
                         {movie.poster_path
-                        ? <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title}/>
-                        : <p>No image avalible</p>
+                            ? <ReactBootstrap.Card.Img variant="top" src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title}/>
+                            : <p>No image avalible</p>
                         }
-                    </div>
+                        <ReactBootstrap.Card.Body>
+                            <ReactBootstrap.Card.Title>{movie.title}</ReactBootstrap.Card.Title>
+                            <ReactBootstrap.Card.Text>{movie.overview}</ReactBootstrap.Card.Text>
+                            <ReactBootstrap.Button variant="primary" onClick={() => clickToRender(movie.id)}>
+                                Go to movie
+                            </ReactBootstrap.Button>
+                        </ReactBootstrap.Card.Body>
+                    </ReactBootstrap.Card>
                 ))
             )}
         </div>
