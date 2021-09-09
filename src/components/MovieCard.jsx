@@ -11,9 +11,11 @@ const MovieCard = (props) => {
     console.log("data", props.data);
 
     return(
-        <div>
+        <ReactBootstrap.Container >
+            <ReactBootstrap.Row>
             {props.data && (
                 props.data.results.map((movie, i) => (
+                    <ReactBootstrap.Col>
                     <ReactBootstrap.Card style={{ width: "18rem "}} key={i}>
                         {movie.poster_path
                             ? <ReactBootstrap.Card.Img variant="top" src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title}/>
@@ -27,9 +29,11 @@ const MovieCard = (props) => {
                             </ReactBootstrap.Button>
                         </ReactBootstrap.Card.Body>
                     </ReactBootstrap.Card>
+                    </ReactBootstrap.Col>
                 ))
             )}
-        </div>
+            </ReactBootstrap.Row>
+        </ReactBootstrap.Container>
     )
 }
 
