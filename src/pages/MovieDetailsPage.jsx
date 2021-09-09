@@ -18,7 +18,6 @@ const MovieDetailsPage = (props) => {
 
     return(
         <ReactBootstrap.Container>
-             <h1>MovieDetailsPage</h1>
             {!data && <></>}
 
             {isLoading && <p>Loading...</p>}
@@ -31,9 +30,9 @@ const MovieDetailsPage = (props) => {
                         ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.poster_path} alt={data.title} fluid/>
                         : <p>No image avalible</p>
                     }
-                    <h2>{data.title}</h2>
+                    <h1>{data.title}</h1>
                     <p>{data.overview}</p>
-                    <h3>Actors:</h3>
+                    <h2>Actors:</h2>
                     {data.credits.cast.map((actor, i) => (
                         <p key={i} className="hover" onClick={() => clickToRender(actor.id)}>{actor.name}</p>
                     ))}

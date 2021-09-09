@@ -7,7 +7,7 @@ const PopularPage = () => {
 
     return(
         <div>
-            <h1>PopularPage</h1>
+            <h1>Popular movies</h1>
 
             {!data && <></>}
 

@@ -7,13 +7,14 @@ const GenrePage = () => {
     const { data, isError, isLoading, error } = useQuery("genre", fetchGenres);
     const historyHook = useHistory();
 
+    //pushing to new route, adding params to later access specific genre´s name
     const clickToRender = (genre) => {
-        historyHook.push(`/genre/${genre.id}`)
+        historyHook.push(`/genre/${genre.id}`, {params: `${genre.name}`})
     }
 
     return(
         <ReactBootstrap.Container>
-            <h1>Genres Page</h1>
+            <h1>All genres</h1>
 
             {!data && <></>}
 

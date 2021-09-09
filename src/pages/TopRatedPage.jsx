@@ -5,10 +5,9 @@ import MovieCard from "../components/MovieCard";
 const TopRatedPage = () => {
     const { data, isError, isLoading, error } = useQuery("topRated", fetchTopRated);
 
-
     return(
         <div>
-            <h1>TopRatedPage</h1>
+            <h1>Top rated movies</h1>
 
             {!data && <></>}
 
