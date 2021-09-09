@@ -4,6 +4,7 @@ import MovieDetailsPage from "./pages/MovieDetailsPage";
 import ActorDetailsPage from "./pages/ActorDetailsPage";
 import PopularPage from "./pages/PopularPage";
 import TopRatedPage from "./pages/TopRatedPage";
+import UpcomingPage from "./pages/UpcomingPage";
 import Navbar from "./components/Navbar";
 
 import {BrowserRouter, Route} from "react-router-dom";
@@ -28,6 +29,7 @@ function App() {
                 <Route exact path="/" component={GenrePage} />
                 <Route exact path="/topRated" component={TopRatedPage} />
                 <Route exact path="/popular" component={PopularPage} />
+                <Route exact path="/upcoming" component={UpcomingPage} />
                 <Route exact path="/genre/:id" component={GenreDetailsPage} />
                 <Route exact path="/movie/:id" component={MovieDetailsPage} />
                 <Route exact path="/actor/:id" component={ActorDetailsPage} />

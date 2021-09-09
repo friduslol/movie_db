@@ -6,6 +6,7 @@ const Navbar = () => {
             <NavLink to="/">Movie Genres</NavLink>
             <NavLink to="/topRated">Topp Movies</NavLink>
             <NavLink to="/popular">Popular Movies</NavLink>
+            <NavLink to="/upcoming">Upcoming Movies</NavLink>
         </div>
     )
 };
