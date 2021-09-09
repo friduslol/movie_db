@@ -1,32 +1,16 @@
-import { useQuery } from "react-query";
-import { fetchGenre } from "../services/GenreDetailsAPI";
 import { useHistory } from "react-router-dom";
 
-const GenreDetailsPage = (props) => {
-    const id = props.match.params.id
-    // const genre = props.match.params.genre
+const MovieCard = (props) => {
     const historyHook = useHistory();
-
-    const { data, isError, isLoading, error, } = useQuery(
-        [`${id}`],
-        () => fetchGenre(`${id}`),
-    );
 
     const clickToRender = (id) => {
         historyHook.push(`/movie/${id}/`);
     }
+
     return(
         <div>
-            {/* <h1>{genre}</h1> */}
-
-            {!data && <></>}
-
-            {isLoading && <p>Loading...</p>}
-
-            {isError && <p>{error}</p>}
-
-            {data && (
-                data.results.map((movie, i) => (
+            {props.data && (
+                props.data.results.map((movie, i) => (
                     <div onClick={() => clickToRender(movie.id)} key={i}>
                         <p>{movie.title}</p>
                         {movie.poster_path
@@ -36,10 +20,8 @@ const GenreDetailsPage = (props) => {
                     </div>
                 ))
             )}
-
         </div>
-
     )
 }
 
-export default GenreDetailsPage;
+export default MovieCard;

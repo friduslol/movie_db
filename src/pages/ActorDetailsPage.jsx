@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchActor } from "../services/GenreAPI"
+import { fetchActor } from "../services/MovieAPI"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const ActorDetailsPage = (props) => {
                     : <p>No image avalible</p>}
                     <p>{data.name}</p>
                     {data.combined_credits.cast.map((movie, i) => (
-                        <p key={i} onClick={() => clickToRender(movie.id)}>{movie.original_title}</p>
+                        <p key={i} onClick={() => clickToRender(movie.id)}>{movie.title}</p>
                     ))}
                 </div>
             )}

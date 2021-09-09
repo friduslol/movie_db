@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchGenres } from "../services/GenreAPI";
+import { fetchGenres } from "../services/MovieAPI";
 import { useHistory } from "react-router-dom";
 
 const GenrePage = () => {
