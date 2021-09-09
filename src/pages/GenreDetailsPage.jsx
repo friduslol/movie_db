@@ -1,26 +1,26 @@
 import { useQuery } from "react-query";
 import { fetchGenre } from "../services/GenreDetailsAPI";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import * as ReactBootstrap from "react-bootstrap";
 
 const GenreDetailsPage = (props) => {
-    const id = props.match.params.id
-    // const genre = props.match.params.genre
     const historyHook = useHistory();
+    const locationHook = useLocation();
+    const id = props.match.params.id
+    //accessing params with uselocation
+    const genre = locationHook.state.params;
 
     const { data, isError, isLoading, error, } = useQuery(
         [`${id}`],
         () => fetchGenre(`${id}`),
     );
 
-    console.log("single genre", props);
-
     const clickToRender = (id) => {
         historyHook.push(`/movie/${id}/`);
     }
     return(
         <ReactBootstrap.Container >
-            {/* <h1>{genre}</h1> */}
+            <h1>{genre}</h1>
 
             {!data && <></>}
 

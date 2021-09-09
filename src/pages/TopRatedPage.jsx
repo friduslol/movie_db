@@ -8,7 +8,7 @@ const TopRatedPage = () => {
 
     return(
         <div>
-            <h1>TopRatedPage</h1>
+            <h1>Top rated movies</h1>
 
             {!data && <></>}
 

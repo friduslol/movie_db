@@ -7,7 +7,7 @@ const UpcomingPage = () => {
 
     return(
         <div>
-            <h1>UpcomingPage</h1>
+            <h1>Upcoming movies</h1>
 
             {!data && <></>}
 

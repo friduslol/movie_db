@@ -22,7 +22,6 @@ const ActorDetailsPage = (props) => {
 
     return(
         <ReactBootstrap.Container>
-             <h1>MovieDetailsPage</h1>
             {!data && <></>}
 
             {isLoading && <p>Loading...</p>}
@@ -35,9 +34,9 @@ const ActorDetailsPage = (props) => {
                         ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name} fluid/>
                         : <p>No image avalible</p>
                     }
-                    <h2>{data.name}</h2>
+                    <h1>{data.name}</h1>
                     <p>{data.biography}</p>
-                    <h3>Movies:</h3>
+                    <h2>Movies:</h2>
 
                     {data.combined_credits.cast.map((movie, i) => (
                         <p key={i} className="hover" onClick={() => clickToRender(movie.id)}>{movie.title}</p>
