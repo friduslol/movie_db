@@ -13,6 +13,8 @@ const GenreDetailsPage = (props) => {
         () => fetchGenre(`${id}`),
     );
 
+    console.log("single genre", props);
+
     const clickToRender = (id) => {
         historyHook.push(`/movie/${id}/`);
     }
@@ -29,8 +31,8 @@ const GenreDetailsPage = (props) => {
             <ReactBootstrap.Row>
             {data && (
                 data.results.map((movie, i) => (
-                    <ReactBootstrap.Col>
-                    <ReactBootstrap.Card style={{ width: "18rem ", height: "100%"}} key={i}>
+                    <ReactBootstrap.Col key={i}>
+                    <ReactBootstrap.Card style={{ width: "18rem ", height: "100%"}}>
                         {movie.poster_path
                             ? <ReactBootstrap.Card.Img variant="top" src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title}/>
                             : <p>No image avalible</p>
