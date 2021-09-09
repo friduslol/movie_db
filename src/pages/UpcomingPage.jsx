@@ -16,7 +16,6 @@ const UpcomingPage = () => {
             {isError && <p>{error}</p>}
 
             <MovieCard data={data} />
-
         </div>
 
     )
