@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchActor } from "../services/GenreAPI"
+import { fetchActor } from "../services/MovieAPI"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom";
 
