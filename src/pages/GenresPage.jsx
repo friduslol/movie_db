@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchGenres } from "../services/MovieAPI";
 import { useHistory } from "react-router-dom";
+import * as ReactBootstrap from "react-bootstrap";
 
 const GenrePage = () => {
     const { data, isError, isLoading, error } = useQuery("genre", fetchGenres);
@@ -11,7 +12,7 @@ const GenrePage = () => {
     }
 
     return(
-        <div>
+        <ReactBootstrap.Container>
             <h1>Genres Page</h1>
 
             {!data && <></>}
@@ -20,15 +21,23 @@ const GenrePage = () => {
 
             {isError && <p>{error}</p>}
 
-
-            {data && (
-                data.genres.map((genre, i) => (
-                    <p onClick={() => clickToRender(genre)} key={i}>{genre.name}</p>
-                ))
-            )}
-
-        </div>
-
+            <ReactBootstrap.Table striped bordered hover size="sm">
+            <thead>
+                <tr>
+                    <th>Genres</th>
+                </tr>
+            </thead>
+                {data && (
+                    data.genres.map((genre, i) => (
+                        <tbody key={i} className="hover">
+                            <tr>
+                                <td onClick={() => clickToRender(genre)}>{genre.name}</td>
+                            </tr>
+                        </tbody>
+                    ))
+                )}
+            </ReactBootstrap.Table>
+        </ReactBootstrap.Container>
     )
 }
 

@@ -5,7 +5,7 @@ import ActorDetailsPage from "./pages/ActorDetailsPage";
 import PopularPage from "./pages/PopularPage";
 import TopRatedPage from "./pages/TopRatedPage";
 import UpcomingPage from "./pages/UpcomingPage";
-import Navbar from "./components/Navbar";
+import NavbarComp from "./components/NavbarComp";
 
 import {BrowserRouter, Route} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -24,7 +24,7 @@ function App() {
     <div className="App">
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <Navbar />
+                <NavbarComp />
                 <ReactQueryDevtools initialIsOpen={false} />
                 <Route exact path="/" component={GenrePage} />
                 <Route exact path="/topRated" component={TopRatedPage} />
