@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { fetchActor } from "../services/MovieAPI"
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom";
+import * as ReactBootstrap from "react-bootstrap";
 
 const ActorDetailsPage = (props) => {
     const id = props.match.params.id
@@ -20,7 +21,7 @@ const ActorDetailsPage = (props) => {
     }, [data])
 
     return(
-        <div>
+        <ReactBootstrap.Container>
              <h1>MovieDetailsPage</h1>
             {!data && <></>}
 
@@ -31,16 +32,20 @@ const ActorDetailsPage = (props) => {
             {data && (
                 <div>
                     {data.profile_path
-                    ? <img src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name}/>
-                    : <p>No image avalible</p>}
-                    <p>{data.name}</p>
+                        ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name} fluid/>
+                        : <p>No image avalible</p>
+                    }
+                    <h2>{data.name}</h2>
+                    <p>{data.biography}</p>
+                    <h3>Movies:</h3>
+
                     {data.combined_credits.cast.map((movie, i) => (
-                        <p key={i} onClick={() => clickToRender(movie.id)}>{movie.title}</p>
+                        <p key={i} className="hover" onClick={() => clickToRender(movie.id)}>{movie.title}</p>
                     ))}
                 </div>
             )}
+    </ReactBootstrap.Container>
 
-        </div>
     )
 }
 
