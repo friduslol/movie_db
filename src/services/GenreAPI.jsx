@@ -44,11 +44,23 @@ export const fetchPopular = async () => {
     return response.json();
 };
 
+export const fetchTopRated = async () => {
+    //eslint-disable-next-line
+    const response = await fetch(url + `/movie/top_rated?api_key=460acee783def1956a6f8b3629ae4590&language=en-US&page=1`);
+
+    if(!response.ok) {
+        throw new Error("Request went wrong!")
+    }
+
+    return response.json();
+};
+
 
 //eslint-disable-next-line
 export default {
     fetchGenres,
     fetchMovie,
     fetchActor,
-    fetchPopular
+    fetchPopular,
+    fetchTopRated
 }
