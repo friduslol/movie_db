@@ -30,7 +30,7 @@ function App() {
                 <Route exact path="/topRated" component={TopRatedPage} />
                 <Route exact path="/popular" component={PopularPage} />
                 <Route exact path="/upcoming" component={UpcomingPage} />
-                <Route exact path="/genre/:id" component={GenreDetailsPage} />
+                <Route exact path="/genre/:genre/:id" component={GenreDetailsPage} />
                 <Route exact path="/movie/:id" component={MovieDetailsPage} />
                 <Route exact path="/actor/:id" component={ActorDetailsPage} />
             </QueryClientProvider>

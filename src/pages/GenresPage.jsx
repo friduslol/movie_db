@@ -7,9 +7,9 @@ const GenrePage = () => {
     const { data, isError, isLoading, error } = useQuery("genre", fetchGenres);
     const historyHook = useHistory();
 
-    //pushing to new route, adding params to later access specific genre´s name
+    //pushing to new route, adding genre.name to later access specific genre´s name
     const clickToRender = (genre) => {
-        historyHook.push(`/genre/${genre.id}`, {params: `${genre.name}`})
+        historyHook.push(`/genre/${genre.name}/${genre.id}`)
     }
 
     return(

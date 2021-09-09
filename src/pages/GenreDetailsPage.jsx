@@ -1,17 +1,16 @@
 import { useQuery } from "react-query";
 import { getPosts } from "../services/GenreDetailsAPI";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useUrlSearchParams } from 'use-url-search-params'
 import * as ReactBootstrap from "react-bootstrap";
 import { useState, useEffect } from "react";
 
 const GenreDetailsPage = (props) => {
     const historyHook = useHistory();
-    const locationHook = useLocation();
-    const id = props.match.params.id
-    const [page, setPage] = useState(1);
-
-    //accessing params with uselocation
-    const genre = locationHook.state.params;
+    const id = props.match.params.id;
+    const genre = props.match.params.genre;
+    const [searchParams, setSearchParams] = useUrlSearchParams({ page: 1 }, { page: Number })
+    const [page, setPage] = useState(searchParams.page);
 
     const { data, isError, isLoading, error, isPreviousData } = useQuery(
         [`${id}`, page],
@@ -22,6 +21,11 @@ const GenreDetailsPage = (props) => {
             keepPreviousData: true, // keep previous data
           }
     );
+
+
+    useEffect(() => {
+		setSearchParams({ ...searchParams, page })
+	}, [page])
 
     const clickToRender = (id) => {
         historyHook.push(`/movie/${id}/`);
