@@ -2,44 +2,42 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/discover/";
 
-const url = "movie?api_key=460acee783def1956a6f8b3629ae4590&with_genres="
+const url = "movie?api_key=460acee783def1956a6f8b3629ae4590&with_genres=";
 
 const get = async (endpoint) => {
-    const response = await axios.get(url + endpoint);
+  const response = await axios.get(url + endpoint);
 
-    console.log("response", response.headers);
-    
+  console.log("response", response);
 
-    return {
-        results: response.data,
-        genredata: response.data.results
-    }
+  return {
+    results: response.data,
+    genredata: response.data.results,
+  };
 };
-
 
 export const getFetch = async (endpoint) => {
-    //eslint-disable-next-line
-    const response = await fetch(baseURL + url + endpoint);
+  //eslint-disable-next-line
+  const response = await fetch(baseURL + url + endpoint);
 
-    console.log("url", endpoint);
+  console.log("url", endpoint);
 
-    if(!response.ok) {
-        throw new Error("Request went wrong!")
-    }
+  if (!response.ok) {
+    throw new Error("Request went wrong!");
+  }
 
-    return response.json();
+  return response.json();
 };
 
-export const getPosts = async (prop, page = null) => {
-    const endpoint = `${prop}&page=${page}`;
-    return get(endpoint)
+export const getPages = async (prop, page = null) => {
+  const endpoint = `${prop}&page=${page}`;
+  return get(endpoint);
 };
 
 //eslint-disable-next-line
 export default {
-    getFetch,
-    getPosts,
-}
+  getFetch,
+  getPages,
+};
 
 // export const fetchGenre = async (id) => {
 //     //eslint-disable-next-line

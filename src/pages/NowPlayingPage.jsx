@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
-import { fetchUpcoming } from "../services/MovieAPI";
+import { fetchNowPlaying } from "../services/MovieAPI";
 import MovieCard from "../components/MovieCard";
 
-const UpcomingPage = () => {
-    const { data, isError, isLoading, error } = useQuery("upcoming", fetchUpcoming);
+const NowPlayingPage = () => {
+    const { data, isError, isLoading, error } = useQuery("playing", fetchNowPlaying);
 
     return(
         <div>
-            <h1>Upcoming movies</h1>
+            <h1>Now playing movies</h1>
 
             {!data && <></>}
 
@@ -21,4 +21,4 @@ const UpcomingPage = () => {
     )
 }
 
-export default UpcomingPage;
+export default NowPlayingPage;

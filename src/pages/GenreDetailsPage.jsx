@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getPosts } from "../services/GenreDetailsAPI";
+import { getPages } from "../services/GenreDetailsAPI";
 import { useHistory } from "react-router-dom";
 import { useUrlSearchParams } from 'use-url-search-params'
 import * as ReactBootstrap from "react-bootstrap";
@@ -14,7 +14,7 @@ const GenreDetailsPage = (props) => {
 
     const { data, isError, isLoading, error, isPreviousData } = useQuery(
         [`${id}`, page],
-        () => getPosts(`${id}`, page),
+        () => getPages(`${id}`, page),
         {
             staleTime: 1000 * 60 * 5, // 5 mins
             cacheTime: 1000 * 60 * 30, // 30 mins
