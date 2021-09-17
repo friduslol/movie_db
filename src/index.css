@@ -8,3 +8,7 @@
 .hover:hover {
   cursor: pointer;
 }
+
+.paddingTop {
+  padding-top: 1rem;
+}

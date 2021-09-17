@@ -25,17 +25,29 @@ const MovieDetailsPage = (props) => {
             {isError && <p>{error}</p>}
 
             {data && (
-                <div>
-                    {data.poster_path
-                        ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.poster_path} alt={data.title} fluid/>
-                        : <p>No image avalible</p>
-                    }
-                    <h1>{data.title}</h1>
-                    <p>{data.overview}</p>
-                    <h2>Actors:</h2>
-                    {data.credits.cast.map((actor, i) => (
-                        <p key={i} className="hover" onClick={() => clickToRender(actor.id)}>{actor.name}</p>
-                    ))}
+                <div className="paddingTop">
+                    <ReactBootstrap.Row>
+                        <ReactBootstrap.Col xs={12}>
+                            {data.poster_path
+                                ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.poster_path} alt={data.title} fluid/>
+                                : <p>No image avalible</p>
+                            }
+                        </ReactBootstrap.Col>
+                        <ReactBootstrap.Col xs={12}>
+                            <h1>{data.title}</h1>
+                            <p>{"Release date: " + data.release_date}</p>
+                            <p>{"Runtime: " + data.runtime}</p>
+                            <p>{"Plot: " + data.overview}</p>
+                        </ReactBootstrap.Col>
+                        <ReactBootstrap.Col xs={12}>
+                            <h2>Actors:</h2>
+                            <ul>
+                                {data.credits.cast.map((actor, i) => (
+                                    <li key={i} className="hover" onClick={() => clickToRender(actor.id)}>{actor.name}</li>
+                                ))}
+                            </ul>
+                        </ReactBootstrap.Col>
+                    </ReactBootstrap.Row>
                 </div>
             )}
         </ReactBootstrap.Container>

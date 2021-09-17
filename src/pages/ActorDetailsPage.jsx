@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import { fetchActor } from "../services/MovieAPI"
-import { useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import * as ReactBootstrap from "react-bootstrap";
 
@@ -16,9 +15,6 @@ const ActorDetailsPage = (props) => {
     const clickToRender = (id) => {
         historyHook.push(`/movie/${id}/`);
     }
-    useEffect(() => {
-        console.log("movie data", data);
-    }, [data])
 
     return(
         <ReactBootstrap.Container>
@@ -29,22 +25,30 @@ const ActorDetailsPage = (props) => {
             {isError && <p>{error}</p>}
 
             {data && (
-                <div>
-                    {data.profile_path
-                        ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name} fluid/>
-                        : <p>No image avalible</p>
-                    }
-                    <h1>{data.name}</h1>
-                    <p>{data.biography}</p>
-                    <h2>Movies:</h2>
-
-                    {data.combined_credits.cast.map((movie, i) => (
-                        <p key={i} className="hover" onClick={() => clickToRender(movie.id)}>{movie.title}</p>
-                    ))}
+                <div className="paddingTop">
+                    <ReactBootstrap.Row>
+                        <ReactBootstrap.Col xs={12}>
+                            {data.profile_path
+                                ? <ReactBootstrap.Image src={"https://image.tmdb.org/t/p/w500" + data.profile_path} alt={data.name} fluid/>
+                                : <p>No image avalible</p>
+                            }
+                        </ReactBootstrap.Col>
+                        <ReactBootstrap.Col xs={12}>
+                            <h1>{data.name}</h1>
+                            <p>{data.biography}</p>
+                        </ReactBootstrap.Col>
+                        <ReactBootstrap.Col xs={12}>
+                            <h2>Movies:</h2>
+                            <ul>
+                                {data.combined_credits.cast.map((movie, i) => (
+                                    <li key={i} className="hover" onClick={() => clickToRender(movie.id)}>{movie.title}</li>
+                                ))}
+                            </ul>
+                        </ReactBootstrap.Col>
+                    </ReactBootstrap.Row>
                 </div>
             )}
-    </ReactBootstrap.Container>
-
+        </ReactBootstrap.Container>
     )
 }
 

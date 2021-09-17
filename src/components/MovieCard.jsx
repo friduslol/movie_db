@@ -8,8 +8,6 @@ const MovieCard = (props) => {
         historyHook.push(`/movie/${id}/`);
     }
 
-    console.log("data", props.data);
-
     return(
         <ReactBootstrap.Container >
             <ReactBootstrap.Row>
