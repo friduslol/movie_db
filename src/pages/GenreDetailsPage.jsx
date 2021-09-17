@@ -27,12 +27,14 @@ const GenreDetailsPage = (props) => {
 
     useEffect(() => {
         //when using browsers back/forward btns, update page
-		setSearchParams({ ...searchParams, page })
+        setSearchParams({ ...searchParams, page })
+        // eslint-disable-next-line
     }, [page])
 
     useEffect(() => {
         //when page change, update url
-		setPage(searchParams.page)
+        setPage(searchParams.page)
+        // eslint-disable-next-line
 	}, [searchParams])
 
     const clickToRender = (id) => {
