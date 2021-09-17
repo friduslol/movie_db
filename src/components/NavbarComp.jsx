@@ -10,7 +10,7 @@ const NavbarComp = () => {
                         <ReactBootstrap.Nav.Link as={NavLink} to="/">Movie Genres</ReactBootstrap.Nav.Link>
                         <ReactBootstrap.Nav.Link as={NavLink} to="/topRated">Topp Movies</ReactBootstrap.Nav.Link>
                         <ReactBootstrap.Nav.Link as={NavLink} to="/popular">Popular Movies</ReactBootstrap.Nav.Link>
-                        <ReactBootstrap.Nav.Link as={NavLink} to="/upcoming">Upcoming Movies</ReactBootstrap.Nav.Link>
+                        <ReactBootstrap.Nav.Link as={NavLink} to="/nowPlaying">Now playing Movies</ReactBootstrap.Nav.Link>
                     </ReactBootstrap.Nav>
             </ReactBootstrap.Navbar.Collapse>
         </ReactBootstrap.Navbar>

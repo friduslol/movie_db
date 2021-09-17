@@ -55,9 +55,9 @@ export const fetchTopRated = async () => {
     return response.json();
 };
 
-export const fetchUpcoming = async () => {
+export const fetchNowPlaying = async () => {
     //eslint-disable-next-line
-    const response = await fetch(url + `/movie/upcoming?api_key=460acee783def1956a6f8b3629ae4590&language=en-US&page=1`);
+    const response = await fetch(url + `/movie/now_playing?api_key=460acee783def1956a6f8b3629ae4590&language=en-US&page=1`);
 
     if(!response.ok) {
         throw new Error("Request went wrong!")
@@ -73,5 +73,5 @@ export default {
     fetchActor,
     fetchPopular,
     fetchTopRated,
-    fetchUpcoming
+    fetchNowPlaying
 }
