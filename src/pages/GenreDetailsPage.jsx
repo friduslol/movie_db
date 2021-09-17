@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { getPages } from "../services/GenreDetailsAPI";
 import { useHistory } from "react-router-dom";
+//useUrlSearchParams is used to persist state after refreshing page
 import { useUrlSearchParams } from 'use-url-search-params'
 import * as ReactBootstrap from "react-bootstrap";
 import { useState, useEffect } from "react";
@@ -9,6 +10,8 @@ const GenreDetailsPage = (props) => {
     const historyHook = useHistory();
     const id = props.match.params.id;
     const genre = props.match.params.genre;
+    //first argument: default vaule of the url string "page=1"
+    //second argumnet, all values parsed from url are string, specifying that I want a number
     const [searchParams, setSearchParams] = useUrlSearchParams({ page: 1 }, { page: Number })
     const [page, setPage] = useState(searchParams.page);
 
@@ -16,14 +19,17 @@ const GenreDetailsPage = (props) => {
         [`${id}`, page],
         () => getPages(`${id}`, page),
         {
-            staleTime: 1000 * 60 * 5, // 5 mins
-            cacheTime: 1000 * 60 * 30, // 30 mins
-            keepPreviousData: true, // keep previous data
+            staleTime: 1000 * 60 * 5,
+            cacheTime: 1000 * 60 * 30,
+            keepPreviousData: true, 
           }
     );
 
+    console.log("data", data);
+
 
     useEffect(() => {
+        //when page change, update url
 		setSearchParams({ ...searchParams, page })
 	}, [page])
 
@@ -70,9 +76,11 @@ const GenreDetailsPage = (props) => {
                 <span>Current Page: {page}</span>
 
                 <ReactBootstrap.Button onClick={() => {
+                    //between page 1-499, add +1 to fetch more data
                     if (!isPreviousData && data.results.page < 500) {
                         setPage((currentPage) => currentPage + 1);
                     }
+                    //on last page disable btn
                 }} disabled={page === 500}>
                     Next Page
                 </ReactBootstrap.Button>
